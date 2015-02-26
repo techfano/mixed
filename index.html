@@ -9,15 +9,24 @@
 
 	var rate = function(numero){
 		if (numero % 2 == 0){
-			return 0;
+			return 0;//p
 		}else{
-			return 1;			
+			return 1;//ip		
 		}
 	}
 
 	var shake = function(model){
 		model.forEach(function(obj){
-			console.log(obj.b/2);			
+			var text = obj.a;
+			if(obj.c===1){
+				var mid = Math.ceil(obj.b/2);
+				var textMid = text.substring(mid-1,mid);
+				var part1 = text.substring(0,mid-1);
+				var part2 = text.substring(mid,text.length);
+				console.log(part1,part2);
+			}else{
+				console.log('p',obj.b/2);			
+			}
 		});
 	}
 
@@ -33,8 +42,6 @@
 				c:rate(counter(element))
 			})
 		});
-
-
 
 		shake(model);
 
