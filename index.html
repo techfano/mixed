@@ -1,0 +1,66 @@
+<html>
+
+<head>
+	<script type="text/javascript">
+//utils
+	var counter = function(text){
+		return text.length;
+	}
+
+	var rate = function(numero){
+		if (numero % 2 == 0){
+			return 0;
+		}else{
+			return 1;			
+		}
+	}
+
+	var shake = function(model){
+		model.forEach(function(obj){
+			console.log(obj.b/2);			
+		});
+	}
+
+//fns
+	var chaos = function(text){
+		var divide = text.split(" ");
+		var model = [];
+
+		divide.forEach(function(element){
+			model.push({
+				a:element,
+				b:counter(element),
+				c:rate(counter(element))
+			})
+		});
+
+
+
+		shake(model);
+
+	}
+
+//main
+
+	var parser = function(text,chaos){
+		chaos(text);
+	}
+
+//scope
+
+	var insert=function(){
+		var text = document.getElementById('text').value;
+
+		parser(text,chaos);
+		
+	}
+
+	</script>
+</head>
+<body>
+	
+	<textarea id="text" onkeyup="insert()"></textarea>
+
+</body>	
+
+</html>
