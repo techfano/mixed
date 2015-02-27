@@ -30,7 +30,6 @@
 	var shake = function(model){
 
 		var character = '';
-		
 		model.forEach(function(obj){
 			var text = obj.a;
 			if(obj.c===1){
@@ -38,14 +37,12 @@
 				var textMid = text.substring(mid-1,mid);
 				var part1 = text.substring(0,mid-1);
 				var part2 = text.substring(mid,text.length);
-
-				character = character + retro(part2)+textMid+retro(part1)+' ';
-								
+				character = character + retro(part1)+textMid+retro(part2)+'*';
 			}else{
 				var p = obj.b/2;
 				var part1 = text.substring(0,p);
 				var part2 = text.substring(p,text.length);	
-				character = character + retro(part2)+retro(part1)+' ';	
+				character = character + retro(part1)+retro(part2)+'*';	
 			}
 		});
 
@@ -65,14 +62,14 @@
 			})
 		});
 
-		console.log(shake(model));
+		return shake(model);
 
 	}
 
 //main
 
 	var parser = function(text,chaos){
-		chaos(text);
+		return chaos(text);
 	}
 
 //scope
@@ -80,7 +77,11 @@
 	var insert=function(){
 		var text = document.getElementById('text').value;
 
-		parser(text,chaos);
+		document.getElementById('result').value = parser(text,chaos);
+		
+	}
+
+	var hex =function(){
 		
 	}
 
@@ -89,7 +90,7 @@
 <body>
 	
 	<textarea id="text" onkeyup="insert()"></textarea>
-
-</body>	
+	<textarea id="result"></textarea>
+</body>
 
 </html>
