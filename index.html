@@ -3,6 +3,8 @@
 <head>
 	<script type="text/javascript">
 //utils
+	
+
 	var counter = function(text){
 		return text.length;
 	}
@@ -15,7 +17,20 @@
 		}
 	}
 
+	var retro =function(text){
+		var back = '';
+		for (var i = text.length-1; i >= 0; i--) {
+			back=back+text[i];
+		};
+		return back;
+	}
+
+	
+
 	var shake = function(model){
+
+		var character = '';
+		
 		model.forEach(function(obj){
 			var text = obj.a;
 			if(obj.c===1){
@@ -23,11 +38,18 @@
 				var textMid = text.substring(mid-1,mid);
 				var part1 = text.substring(0,mid-1);
 				var part2 = text.substring(mid,text.length);
-				console.log(part1,part2);
+
+				character = character + retro(part2)+textMid+retro(part1)+' ';
+								
 			}else{
-				console.log('p',obj.b/2);			
+				var p = obj.b/2;
+				var part1 = text.substring(0,p);
+				var part2 = text.substring(p,text.length);	
+				character = character + retro(part2)+retro(part1)+' ';	
 			}
 		});
+
+		return character; 
 	}
 
 //fns
@@ -43,7 +65,7 @@
 			})
 		});
 
-		shake(model);
+		console.log(shake(model));
 
 	}
 
