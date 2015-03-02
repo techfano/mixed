@@ -1,6 +1,7 @@
 <html>
 
 <head>
+	<meta charset="UTF-8">
 	<script type="text/javascript">
 //utils
 	
@@ -25,8 +26,6 @@
 		return back;
 	}
 
-	
-
 	var shake = function(model){
 
 		var character = '';
@@ -48,6 +47,42 @@
 
 		return character; 
 	}
+
+	function bintoasc(bin) { // convierte de binario (01000001) a ascii (A)
+		var bin=bin+""; // asegura un valor "strings"
+		for (asc=0, i=0; i<bin.length; i++ ) {
+		asc=asc*2 + parseInt(bin.substr(i,1));
+		}
+		return String.fromCharCode(asc);
+	}
+
+	function asctobin(asc) { // conviert de ascii (A) a binario (01000001)
+		//var asc=asc.charCodeAt(0); // asegura un valor "numbers"
+		var bin="";
+		while (bin.length < 8) { 
+			var z=parseInt(asc/2), bin=String.fromCharCode(48+(asc-z*2))+bin, asc=z;
+		}
+		return bin;
+	}
+
+	function aleatorio(inferior,superior){ 
+	   numPosibilidades = superior - inferior 
+	   aleat = Math.random() * numPosibilidades 
+	   aleat = Math.floor(aleat) 
+	   return parseInt(inferior) + aleat 
+	}
+
+	function hexa(){ 
+	   hexadecimal = new Array("0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F")
+	   color_aleatorio = "#"; 
+	   for (i=0;i<6;i++){ 
+	      posarray = aleatorio(0,hexadecimal.length) 
+	      color_aleatorio += hexadecimal[posarray] 
+	   } 
+	   return color_aleatorio 
+	}
+
+	console.log(hexa())
 
 //fns
 	var chaos = function(text){
@@ -80,10 +115,49 @@
 		document.getElementById('result').value = parser(text,chaos);
 		
 	}
+//
 
-	var hex =function(){
-		
+	/*var hex =function(){
+		var a =['A','B','C','D','E','F','G','H','I','J','K','L','M','N','Ñ','O','P','Q','R','S','T','U','V','W','X','Y','Z','a','b','c','d','e','f','g','h','i','j','k','l','m','n','ñ','o','p','q','r','s','t','u','v','w','x','y','z','á','é','í','ó','ú',' '];
+		a.forEach(function(str){
+			console.log(bintoasc(asctobin(str.charCodeAt(0)))+" "+asctobin(str.charCodeAt(0))+" "+str.charCodeAt(0)+" "+str);
+		})
+
+		var s = "t";
+
+		var b = asctobin(s.charCodeAt(0))
+		console.log('b',b)
 	}
+	hex();*/
+
+/*var arPrim = new Array(1,2,3);
+function primos(numero){
+	for(j=3;j<=numero;j+=2){
+		var primo = true;
+		for(k=2;k<arPrim.length;k++){
+			if(j%arPrim[k]==0){
+				primo = false;
+				break;
+			}
+		}
+		if (primo == true){
+			arPrim.push(j);
+		}
+	}
+	return arPrim;
+}
+var pr=primos(256);
+
+var c=1;
+
+pr.forEach(function(e){
+	var f = bintoasc(asctobin(e));
+	if(e>=37 && e<=113 || e>=163 && e!=173 && e<=233){
+			console.log(bintoasc(asctobin(e)),e,c++);		
+	}
+});*/
+
+//console.log(bintoasc(asctobin('33')));
 
 	</script>
 </head>
